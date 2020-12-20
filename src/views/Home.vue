@@ -16,7 +16,7 @@
               </div>
                 <p class="card-text p-0 m-0 mb-2" v-if="product.esrb_rating">{{ product.esrb_rating.name }}</p>
             </div>
-            <a :href="'/products/' + products.id" class="btn btn-primary">Details</a>
+           <router-link :to="{ name: 'details', params: { id: product.id }}">Details</router-link>
           </div>
         </div>
     </div>
@@ -64,7 +64,8 @@ export default defineComponent({
     function setImg () {
       event.setImg = false
     }
-    setTimeout(setImg, 2000)
+    console.log(event.data)
+    setTimeout(setImg, 1000)
     return {
       event
     }

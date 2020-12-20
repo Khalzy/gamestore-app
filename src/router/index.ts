@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Random from '../views/Random.vue'
 import Categories from '../views/Categories.vue'
-import useFetch from '../Hooks/useFetch.vue'
+import Details from '../views/Details.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/random',
     name: 'Random',
     component: Random
+  },
+  {
+    path: '/details/:id',
+    name: 'details',
+    component: Details
   }
 ]
 
