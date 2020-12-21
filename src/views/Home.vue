@@ -3,7 +3,7 @@
     <h3 v-if="event.loading"></h3>
     <h3 v-if="!event.loading && event.error">{{event.error}}</h3>
     <div v-if="!event.data !== null" class="d-flex flex-wrap">
-        <div class="card d-flex mx-auto" v-for="(product, index) in event.data" :key='index'>
+        <div class="card d-flex mx-auto mb-1 mt-5" v-for="(product, index) in event.data" :key='index'>
           <div class="card-body">
             <img class="card-img-top h-50 pb-2" :src="event.setImg ? require(`@/assets/loading.gif`) : product.background_image" :alt="product.name">
             <div class="card-info">
@@ -64,7 +64,6 @@ export default defineComponent({
     function setImg () {
       event.setImg = false
     }
-    console.log(event.data)
     setTimeout(setImg, 1000)
     return {
       event
