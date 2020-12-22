@@ -7,7 +7,7 @@
             <div class="d-flex flex-wrap fw-light justify-content-between" v-if="state.perm">
                 <p class="mb-5 d-block w-100">{{ state.perm.seo_text }}</p>
                 <div class="size" v-for="(item, index) in state.perm.results" :key="index">
-                    <img class="heights mb-2 rounded-2" :src="item.background_image"/>
+                    <img class="w-100 h-75 mb-2 rounded-2" :src="item.background_image"/>
                     <h6 class="w-100 text-center p-1 fw-normal">{{ item.name }}</h6>
                 </div>
             </div>
@@ -68,11 +68,33 @@ export default {
 <style>
 .size{
     width: 30%;
+    height: 220px;
 }
 .details-w{
  width: 90%;
 }
-.heights {
-    width: 100%;
+@media only screen and (max-width: 595px) {
+    .size{
+        width: auto;
+        height: 220px;
+    }
+}
+@media only screen and (min-width: 600px) {
+  .size{
+    width: 45%;
+    height: 220px;
+}
+}
+@media only screen and (min-width: 1000px) {
+    .size{
+        width: 45%;
+        height: 220px;
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .size{
+        width: 26%;
+        height: auto;
+    }
 }
 </style>
