@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Random from '../views/Random.vue'
 import Categories from '../views/Categories.vue'
 import Details from '../views/Details.vue'
+import Platforms from '../views/Platforms.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/details/:id',
     name: 'details',
     component: Details
+  },
+  {
+    path: '/platform/:platform',
+    name: 'platforms',
+    component: Platforms
   }
 ]
 

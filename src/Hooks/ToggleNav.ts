@@ -13,5 +13,4 @@ const toggleNavbar = createApp({
       }
 })
 
-
 toggleNavbar.mount('.navbar-toggler')
