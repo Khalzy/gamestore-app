@@ -1,23 +1,17 @@
 <template>
   <div id="app">
       <NavBar />
-      <div>
-          <router-view />
-      </div>
+      <router-view />
       <Footer />
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent } from 'vue'
-import NavBar from './components/NavBar.vue'
-import Footer from './components/Footer.vue'
+import NavBar from './views/NavBar.vue'
+import Footer from './views/Footer.vue'
 
 export default defineComponent({
   components: { NavBar, Footer }
 })
-
 </script>
-<style lang="scss">
-
-</style>
