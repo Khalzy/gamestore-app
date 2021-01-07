@@ -1,27 +1,35 @@
-import { reactive, watchEffect } from 'vue'
+import { watchEffect, ref } from 'vue'
 import axios from 'axios'
 
-interface FetchState {
-    games: object | any;
-    error: string;
-    loading: boolean;
-}
+// interface FetchState {
+//   games: typeof ref;
+//   error: Error | string;
+// }
 export default function getGames (link: string) {
-  const state = reactive<FetchState>({
-    games: null,
-    error: '',
-    loading: false
-  })
+  // const state = reactive<FetchState>({
+  //   games: ref(),
+  //   error: ''
+  // })
+  const games = ref()
+  const error = ref()
   const fetchData = async () => {
     const headers = { 'Content-Type': 'application/json' }
-    const result = await axios.get(link, { headers })
-    state.games = result.data.results
-    console.log(state.games)
+    await axios.get(link, { headers })
+      .then(response => {
+        games.value = response.data.results
+        // console.log(response.data.results)
+        // console.log(games.value)
+      }).catch(err => {
+        error.value = err
+        console.log(err, 'ddd')
+      })
   }
 
   watchEffect(() => {
-    console.log('url has changed', link)
     fetchData()
   })
-  return state
+  return {
+    games,
+    error
+  }
 }

@@ -2,16 +2,18 @@ import { reactive, watchEffect } from 'vue'
 import axios from 'axios'
 
 interface FetchState {
-    platforms: Array<TemplateStringsArray>;
+    genres: object | any;
+    error: string;
 }
-export default function getPlatform (link: string) {
+export default function getGames (link: string) {
   const state = reactive<FetchState>({
-    platforms: []
+    genres: null,
+    error: ''
   })
   const fetchData = async () => {
     const headers = { 'Content-Type': 'application/json' }
     const result = await axios.get(link, { headers })
-    state.platforms = result.data.results
+    state.genres = result.data.results
   }
 
   watchEffect(() => {

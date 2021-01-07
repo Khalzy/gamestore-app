@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-import Random from '../views/Random.vue'
-import Categories from '../views/Categories.vue'
-import Details from '../views/Details.vue'
-import Platforms from '../views/Platforms.vue'
+const Home = () => import(/* webpackChunkName: "group-foo" */ '../views/Home.vue')
+const Random = () => import(/* webpackChunkName: "group-foo" */ '../views/Random.vue')
+const Categories = () => import(/* webpackChunkName: "group-foo" */ '../views/Categories.vue')
+const Details = () => import(/* webpackChunkName: "group-foo" */ '../views/Details.vue')
+const Platforms = () => import(/* webpackChunkName: "group-foo" */ '../views/Platforms.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,9 +27,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Details
   },
   {
-    path: '/platform/:platform',
+    path: '/:id/:platform',
     name: 'platforms',
     component: Platforms
+  },
+  {
+    path: '/genre/:genreId/:name',
+    name: 'genre',
+    component: Home
   }
 ]
 

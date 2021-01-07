@@ -2,9 +2,10 @@
   <div v-if="details" class="d-flex flex-column">
     <div v-for="(item, index) in details" :key="index">
       <img v-if="item" :src="item.background_image" class="w-100">
-      <h1 v-if="item" class="mt-5 mb-5 details-w mx-auto">{{ item.name }}</h1>
-      <p v-if="item" class="fs-6 fw-light mb-5 details-w mx-auto">{{ item.description_raw }}</p>
+      <h1 v-if="item" class="mt-5 mb-4 details-w mx-auto">{{ item.name }}</h1>
+      <p v-if="item" class="fs-6 fw-light mb-1 details-w mx-auto" v-html="item.description_raw"></p>
     </div>
+
         <div class="details-w mx-auto">
           <div class="d-flex flex-wrap fw-light justify-content-between" v-if="details.suggested">
             <p class="mb-5 d-block w-100">{{ details.suggested.seo_text }}</p>
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import { defineComponent, watchEffect, reactive, watch, ref } from 'vue'
+import { defineComponent, watchEffect, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import getDetails from '../Hooks/getDetails'
 export default defineComponent({
@@ -28,16 +29,15 @@ export default defineComponent({
     const route = useRoute()
     const details = ref()
     let suggested = ref()
-    const id = route.params.id
     function getId (id) {
       details.value = getDetails(id)
       suggested = getDetails(id)
-      console.log(route.params.id)
+      console.log(details)
     }
     watchEffect(() => {
       getId(route.params.id)
     })
-    console.log(details.value)
+
     return {
       details,
       suggested

@@ -1,7 +1,9 @@
 <template>
     <div class="d-flex flex-column text-center mt-4">
       <h1>Random dog pictures</h1>
-      <img v-if="dog.img" class="contain d-block mx-auto mb-5 rounded" :src="dog.img" />
+        <div class="contain mx-auto py-2 mb-5">
+          <img v-if="dog" class="contain d-block rounded" :src="dog.img" />
+        </div>
       <button class="btn btn-primary w-5 mx-auto" @click="getData">New Dog</button>
     </div>
 </template>
