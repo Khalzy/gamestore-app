@@ -1,9 +1,8 @@
 <template>
   <div class="d-flex mx-auto page-wrapper mt-5 justify-content-center flex-column">
     <p class="h1 fw-bold text-center  mb-5">Games on {{$route.params.platform}}</p>
-
     <div v-if="data" class="d-flex flex-wrap justify-content-center min-vh-100">
-        <div v-for="(item, index) in data.platforms" :key="index" class="d-flex flex-wrap m-2-5  mb-3">
+        <div v-for="(item, index) in data.games" :key="index" class="d-flex flex-wrap m-2-5  mb-3">
             <div class="card" style="width: 16rem;" v-if="item">
               <video width="298" height="199" controls v-if="item.clip" @click="loadVid($event)" :id="item.id" :poster="item.background_image" playsinline>
                 <source :src="item.clip.clips.full" type="video/mp4">
@@ -31,7 +30,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue'
-import getPlatformGames from '../Api/getPlatformGames'
+import getGames from '../Api/getGames'
 import { useRoute } from 'vue-router'
 import getGenres from '../Api/getGenres'
 
@@ -50,7 +49,7 @@ export default defineComponent({
     }
     watchEffect(() => {
       const platformID = route.params.id
-      data.value = getPlatformGames(`https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added&platforms=${platformID}`)
+      data.value = getGames(`https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added&platforms=${platformID}`)
     })
     return {
       data,

@@ -1,34 +1,32 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-const Home = () => import(/* webpackChunkName: "group-foo" */ '../views/Home.vue')
-const Random = () => import(/* webpackChunkName: "group-foo" */ '../views/Random.vue')
-const Details = () => import(/* webpackChunkName: "group-foo" */ '../views/Details.vue')
-const Platforms = () => import(/* webpackChunkName: "group-foo" */ '../views/Platforms.vue')
-
+function loadView (view: string) {
+  return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+}
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: loadView('Home')
   },
   {
     path: '/random',
     name: 'Random',
-    component: Random
+    component: loadView('RandomData')
   },
   {
     path: '/details/:id',
     name: 'details',
-    component: Details
+    component: loadView('Details')
   },
   {
     path: '/:id/:platform',
     name: 'platforms',
-    component: Platforms
+    component: loadView('Platforms')
   },
   {
     path: '/genre/:genreId/:name',
     name: 'genre',
-    component: Home
+    component: loadView('Home')
   }
 ]
 

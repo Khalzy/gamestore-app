@@ -5,7 +5,7 @@
       <button class="btn btn-secondary dropdown-toggle mx-auto mt-3"  @click="dropdown = !dropdown" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         {{$route.params.name ? $route.params.name : 'Action'}}
       </button>
-      <ul class="dropdown-display-menu mx-auto flex-column" v-if="genres.genres" v-show="dropdown">
+      <ul class="dropdown-menu mx-auto flex-column" v-if="genres.genres" v-show="dropdown">
         <li v-for="(genre, index) in genres.genres.slice(0,10)" :key="index">
             <router-link class="dropdown-item" :to="{ name: 'genre', params: { genreId: genre.id, name: genre.name }}">{{ genre.name }}</router-link>
         </li>
@@ -74,78 +74,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-.dropdown-display-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  z-index: 1000;
-  min-width: 10rem;
-  padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
-  font-size: 1rem;
-  color: #212529;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
-}
-body {
-  min-height: 100vh;
-}
-.btn-holder {
-  right: 10px;
-  bottom: 10px;
-}
-.card video {
-  object-fit: cover;
-}
-.m-2-5 {
-  margin: 0.6em;
-}
-.page-wrapper {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.game_video video{
-  object-fit: cover;
-  width: 100%;
-}
-
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #545454;
-  color: white;
-}
-.card {
-  min-width: 300px;
-  min-height: 400px;
-  max-height: 400px;
-  background-color: transparent;
-  color: black;
-}
-.card-text {
-  height: fit-content;
-}
-@media only screen and (max-width: 500px) {
-  .card {
-    min-height: 400px;
-    background-color: transparent;
-    color: black;
-  }
-}
-
-@media only screen and (min-width: 500px) {
-  .card {
-    width: 400px;
-    height: 380px;
-    background-color: transparent;
-    color: black;
-  }
-}
-</style>
