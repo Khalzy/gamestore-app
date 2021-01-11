@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex mx-auto page-wrapper justify-content-center mt-5 flex-column">
-    <p class="h1 fw-bold text-center mb-5">Best of the year 🏆</p>
-    <div v-if="data" class="d-flex ">
+    <p class="h1 fw-bold text-center mb-5">Best {{$route.params.name}} of 2020</p>
+    <div v-if="data" class="d-flex">
       <div class="carousel">
         <div class="card border-0 m-2 w" v-for="(item, index) in data.games" :key="index">
           <router-link
@@ -21,7 +21,7 @@
                 </p>
                 <p class="card-text p-1 btn btn-warning" v-else>{{ item.rating }}</p>
               </div>
-              <div class="d-flex">
+              <div class="d-flex w-100">
                 <p
                   class="card-text"
                   v-for="(genre, index) in item.genres.slice(0, 2)"
@@ -34,19 +34,22 @@
           </router-link>
         </div>
       </div>
-      <div class="dropdown d-flex flex-column w-90 mx-auto text-white dropdown-home" if="genres">
-        <p class="border-bottom h3">Categories</p>
+      <div
+        class="dropdown d-flex flex-column w-90 mx-auto text-white dropdown-home"
+        if="genres"
+      >
+        <p class="h3">Categories</p>
         <div
-          class="text-white h5 border-0 dropdown-toggle mt-3  fw-bold"
+          class="text-white h5 border-0 dropdown-toggle mt-3 fw-bold"
           @click="dropdown = !dropdown"
           id="dropdownMenuButton"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Genre's
+        Sort
         </div>
 
-        <ul class="flex-column w-75" v-if="genres.genres" v-show="dropdown">
+        <ul class="flex-column" v-if="genres.genres" v-show="dropdown">
           <li v-for="(genre, index) in genres.genres.slice(0, 10)" :key="index">
             <router-link
               class="dropdown-item h5"
@@ -59,9 +62,13 @@
     </div>
 
     <div>
-     <p class="mx-auto w-90 fw-bold">Coming Soon</p>
+      <p class="mx-auto w-90 fw-bold mb-2 h1">Coming Soon</p>
       <div class="carousel">
-        <div class="card border-0 m-2 w" v-for="(item, index) in popular.games" :key="index">
+        <div
+          class="card border-0 m-2 w"
+          v-for="(item, index) in popular.games"
+          :key="index"
+        >
           <router-link
             class="text-decoration-none"
             :to="{ name: 'details', params: { id: item.id } }"
@@ -88,7 +95,7 @@
           </router-link>
         </div>
       </div>
-   </div>
+    </div>
   </div>
 </template>
 
@@ -126,5 +133,5 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-@import "../assets/home.css";
+@import "../assets/style.css";
 </style>

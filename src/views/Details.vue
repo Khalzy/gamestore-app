@@ -2,7 +2,7 @@
   <div v-if="details" class="d-flex flex-column min-vh-100">
     <a
       @click="$router.go(-1)"
-      class="position-absolute fw-bold text-white h5 p-2 rounded text-decoration-none"
+      class="position-absolute fw-bold text-white h5 p-2 rounded text-shadow"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,35 +19,36 @@
       </svg>
       Back
     </a>
-      <div v-if="details.details">
-        <img :src="details.details.background_image" class="w-100" />
-          <h1 class="mt-5 mb-4 h1 mx-auto w-90">{{ details.details.name}}</h1>
-        <div class="m-auto w-90 mb-5 d-flex justify-content-between">
-          <div>
-            <p class="text-fit">Developed by</p>
-            <div v-for="(item, index) in details.details.developers" :key="index">
-              <sub class="mt-5 mb-4 fw-light">{{ item.name }}</sub>
-            </div>
-          </div>
-          <div>
-            <p class="text-fit text-end">Published by </p>
-            <div v-for="(item, index) in details.details.publishers" :key="index">
-              <sub class="mt-5 mb-4 fw-light">{{ item.name }}</sub>
-            </div>
+    <div v-if="details.details" class="info">
+      <img :src="details.details.background_image" class="w-100" />
+      <h1 class="mt-5 mb-4 h1 mx-auto w-90">{{ details.details.name }}</h1>
+      <div class="m-auto w-90 mb-5 d-flex justify-content-between">
+        <div>
+          <p class="text-fit">Developed by</p>
+          <div v-for="(item, index) in details.details.developers" :key="index">
+            <sub class="mt-5 mb-4 fw-light">{{ item.name }}</sub>
           </div>
         </div>
-        <h4 class="w-90 mx-auto mb-3">About</h4>
-        <p
-          class="fs-6 fw-normal mb-1 w-90 mx-auto mb-5"
-          v-html="details.details.description_raw"
-        ></p>
+        <div>
+          <p class="text-fit text-end">Published by</p>
+          <div v-for="(item, index) in details.details.publishers" :key="index">
+            <sub class="mt-5 mb-4 fw-light">{{ item.name }}</sub>
+          </div>
+        </div>
       </div>
+      <div class="mx-auto w-90 mb-5" v-if="details.details.released">
+        <p>Release date</p>
+        <sub class="mx-auto w-90 fw-light">{{ details.details.released }}</sub>
+      </div>
+      <h4 class="w-90 mx-auto mb-3" v-if="details.details.description_raw">About</h4>
+      <p
+        class="fs-6 fw-normal mb-1 w-90 mx-auto mb-5"
+        v-html="details.details.description_raw"
+      ></p>
+    </div>
 
     <div class="mx-auto w-90">
-      <div
-        class="d-flex flex-wrap fw-normal"
-        v-if="details.suggested"
-      >
+      <div class="d-flex flex-wrap fw-normal" v-if="details.suggested">
         <p class="mb-5">{{ details.suggested.seo_text }}</p>
         <div class="carousel-y">
           <div
@@ -55,20 +56,16 @@
             v-for="(item, index) in details.suggested.results"
             :key="index"
           >
-          <router-link :to="{ name: 'details', params: { id: item.id } }">
-            <img
-              class="mx-auto sizing mb-2 rounded"
-              :src="item.background_image"
-            />
-            <h6 class="text-center mx-auto p-1 fw-light h-20px">
-              {{
-                item.name
-              }}
-            </h6>
+            <router-link :to="{ name: 'details', params: { id: item.id } }">
+              <img class="mx-auto sizing mb-2 rounded" :src="item.background_image" />
+              <h6 class="text-center mx-auto p-1 fw-light h-20px">
+                {{ item.name }}
+              </h6>
             </router-link>
           </div>
         </div>
       </div>
+      <p v-else> No suggested</p>
     </div>
   </div>
 </template>
