@@ -1,0 +1,232 @@
+body,html {
+    color: white;
+    width: 100vw;
+}
+ li {
+   list-style: none;
+ }
+ a.dropdown-item {
+    color: white;
+ }
+
+ .details-margin {
+     margin: 1em;
+ }
+
+ .router-link-active a{
+    background-color: white;
+    color: black !important;
+ }
+.text-fit {
+    width: fit-content !important;
+}
+.w-90 {
+    width: 90% !important;
+    word-wrap: break-word;
+}
+
+.v-align {
+    vertical-align: bottom;
+}
+.h-20px {
+    max-width: 288px;
+}
+.border-rounded {
+    border-radius: 5px;
+}
+
+.dropdown > div{
+    background-color: #151515
+}
+.card {
+    min-width: 17em;
+    max-width: 17em;
+    min-height: 21em;
+    max-height: 21em;
+    background-color: #151515;
+    scroll-snap-align: start;
+}
+
+.card-y{
+    scroll-snap-align: start;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-y a{
+    text-decoration: none;
+    color: white;
+}
+
+.card-img-top {
+    min-height: 180px;
+    max-height: 180px;
+}
+
+.carousel {
+    display: flex;
+    height: fit-content;
+    margin: 0 auto;
+    min-height: 337px;
+}
+.carousel-y {
+    height: fit-content;
+    width: 100%;
+}
+
+.sizing {
+    min-width: 288px;
+    min-height: 162px;
+    max-width: 288px;
+    max-height: 162px;
+}
+
+@media  only screen and (max-width: 425px) {
+    .carousel {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    ::-webkit-scrollbar{
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media  only screen and (max-width: 320px) {
+    .carousel-y {
+        max-height: 300px;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    ::-webkit-scrollbar{
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    div .sizing{
+        min-width: 250px;
+        min-height: 140px;
+        max-width: 250px;
+        max-height: 140px;
+    }
+    .img-height {
+        min-height: 180px;
+    }
+}
+
+.page-wrapper > div > .dropdown > ul {
+    padding: 10px !important;
+    z-index: 1000;
+}
+@media  only screen and (max-width: 425px) {
+    .carousel-y {
+        max-height: 250px;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 auto;
+    }
+    ::-webkit-scrollbar{
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    div .sizing{
+        min-width: 100%;
+        min-height: 187px;
+        max-width: 100%;
+        max-height: 187px;
+    }
+    .img-height {
+        min-height: 200px;
+    }
+}
+@media  only screen and (min-width: 426px) {
+    .carousel-y {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card-y {
+        margin: 9px;
+    }
+    .carousel {
+        flex-wrap: wrap;
+        width: 80%;
+        margin: 0 0 0 15px;
+        justify-content: center;
+    }
+    .card {
+        min-width: 20em;
+        max-width: 20em;
+    }
+}
+
+@media  only screen and (max-width: 900px) {
+    .page-wrapper > div > .dropdown {
+        display: block !important;
+    }
+
+    .carousel {
+        width: 90%;
+    }
+
+    .page-wrapper > div {
+        flex-direction: column-reverse;
+    }
+    .page-wrapper > div > .dropdown {
+        position: relative;
+        /* width: 20em !important; */
+    }
+    .page-wrapper > div > .dropdown > ul {
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+        width: 60% !important;
+    }
+    .page-wrapper > div > .dropdown > p {
+        display: none;
+    }
+    .page-wrapper > div a.dropdown-item {
+        color: black;
+    }
+}
+
+@media  only screen and (max-width: 768px) {
+    .page-wrapper > div > .dropdown {
+        position: relative;
+    }
+}
+
+@media  only screen and (max-width: 320px) {
+    .page-wrapper > div > .dropdown {
+        position: relative;
+    }
+    .page-wrapper > div > .dropdown > ul {
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+        width: 100% !important;
+    }
+    div .sizing{
+        min-width: 100%;
+        min-height: 163px;
+        max-width: 100%;
+        max-height: 163px;
+    }
+}
+
+@media  only screen and (min-width: 769px) {
+ .dropdown {
+     width: auto !important;
+ }
+}

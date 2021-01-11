@@ -1,30 +1,64 @@
 <template>
-  <div class="d-flex mx-auto page-wrapper mt-5 justify-content-center flex-column">
-    <p class="h1 fw-bold text-center  mb-5">Games on {{$route.params.platform}}</p>
-    <div v-if="data" class="d-flex flex-wrap justify-content-center min-vh-100">
-        <div v-for="(item, index) in data.games" :key="index" class="d-flex flex-wrap m-2-5  mb-3">
-            <div class="card" style="width: 16rem;" v-if="item">
-              <video width="298" height="199" controls v-if="item.clip" @click="loadVid($event)" :id="item.id" :poster="item.background_image" playsinline>
-                <source :src="item.clip.clips.full" type="video/mp4">
-                Your browser does not support HTML video.
-              </video>
-              <img class="card-img-top h-50" v-if="!item.clip" :src="item.background_image" :alt="item.name">
-              <div class="card-body position-relative bg-white">
-                <div class="d-flex justify-content-between min-h-60">
-                  <h5 class="card-title">{{ item.name }}</h5>
-                  <p class="card-text p-1 btn btn-warning" v-if="item.metacritic">{{ item.metacritic }}</p>
-                  <p class="card-text p-1 btn btn-warning" v-else>{{ item.rating }}</p>
-                </div>
-                <div class="d-flex flex-wrap fw-light">
-                  <p class="card-text" v-for="(genre, index) in item.genres" :key="index">
-                    <span v-if="index">, </span> <span>{{ genre.name }}</span>
-                  </p>
-                  <p class="card-text p-0" v-if="item.esrb_rating">, {{ item.esrb_rating.name }}</p>
-                </div>
-                  <router-link class="btn btn-primary position-absolute btn-holder" :to="{ name: 'details', params: { id: item.id }}">Details</router-link>
+  <div class="d-flex mx-auto page-wrapper justify-content-center mt-5 flex-column">
+    <p class="h1 fw-bold text-center mb-5">Games on {{ $route.params.platform }}</p>
+    <div v-if="data" class="d-flex">
+      <div class="carousel">
+        <div class="card border-0 m-2 w" v-for="(item, index) in data.games" :key="index">
+          <router-link
+            class="text-decoration-none"
+            :to="{ name: 'details', params: { id: item.id } }"
+          >
+            <img
+              class="card-img-top h-75"
+              :src="item.background_image"
+              :alt="item.name"
+            />
+            <div class="card-body position-relative text-white">
+              <div class="d-flex justify-content-between min-h-60">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text p-1 btn btn-warning" v-if="item.metacritic">
+                  {{ item.metacritic }}
+                </p>
+                <p class="card-text p-1 btn btn-warning" v-else>{{ item.rating }}</p>
+              </div>
+              <div class="d-flex">
+                <p
+                  class="card-text"
+                  v-for="(genre, index) in item.genres.slice(0, 2)"
+                  :key="index"
+                >
+                  <span v-if="index">/ </span> <span class="pe-1">{{ genre.name }}</span>
+                </p>
               </div>
             </div>
+          </router-link>
         </div>
+      </div>
+      <div class="dropdown d-flex w-25 flex-column text-white" if="genres">
+        <p class="border-bottom w-75 h3">Categories</p>
+        <div
+          class="text-white bg-transparent h5 border-0 dropdown-toggle mt-3"
+          @click="dropdown = !dropdown"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Platforms
+        </div>
+
+        <ul class="flex-column w-75" v-if="platforms.platforms" v-show="dropdown">
+          <li v-for="(item, index) in platforms.platforms.slice(0, 8)" :key="index">
+            <router-link
+              class="dropdown-item h5"
+              :to="{
+                    name: 'platforms',
+                    params: { platform: item.name, id: item.id },
+                  }"
+              >{{ item.name }}</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -33,30 +67,31 @@ import { defineComponent, ref, watchEffect } from 'vue'
 import getGames from '../Api/getGames'
 import { useRoute } from 'vue-router'
 import getGenres from '../Api/getGenres'
+import getPlatformGames from '../Api/getPlatformGames'
 
 export default defineComponent({
   setup () {
     const route = useRoute()
     const data = ref()
-
+    const platforms = ref()
+    const dropdown = ref(false)
     const genres = getGenres('https://api.rawg.io/api/genres')
-
-    function loadVid (event: Event) {
-      const target = (event.target as HTMLElement)
-      const form = document.getElementById(`${target.id}`)
-      if (form) ((form as HTMLMediaElement).onended) = function () { console.log('Video has stopped playing') }
-      if (form) ((form as HTMLMediaElement).onended) = function () { ((form as HTMLMediaElement).load()) }
+    function getPlatform () {
+      platforms.value = getPlatformGames('https://api.rawg.io/api/platforms')
     }
     watchEffect(() => {
       const platformID = route.params.id
-      data.value = getGames(`https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added&platforms=${platformID}`)
+      data.value = getGames(
+        `https://api.rawg.io/api/games?dates=2020-01-01,2020-12-31&ordering=-added&platforms=${platformID}`
+      )
+      getPlatform()
     })
     return {
       data,
       genres,
-      loadVid
+      platforms,
+      dropdown
     }
   }
 })
-
 </script>
