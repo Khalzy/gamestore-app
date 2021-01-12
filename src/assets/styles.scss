@@ -135,20 +135,14 @@ html {
             position: absolute;
             padding: 10px;
             z-index: 1000;
+            margin-top: 3.5em;
+            background-color: #151515;
             li {
                 a {
                     color: white;
                     cursor: pointer;
                 }
             }
-        }
-    }
-}
-
-.content-wrapper {
-     .dropdown {
-        ul {
-            background-color: #151515;
         }
     }
 }
