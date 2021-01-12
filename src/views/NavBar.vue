@@ -39,6 +39,10 @@
               <li v-for="(item, index) in platforms.platforms.slice(0, 8)" :key="index">
                 <router-link
                   class="dropdown-item text-dark"
+                  @click="
+                    platformDropDown = false;
+                    dropdown = false;
+                  "
                   :to="{
                     name: 'platforms',
                     params: { platform: item.name, id: item.id },

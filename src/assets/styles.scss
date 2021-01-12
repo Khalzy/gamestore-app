@@ -1,0 +1,267 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before,*:after {
+    box-sizing: inherit;
+}
+
+.swipeCard {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+    min-width: 16em;
+    height: 440px;
+    max-height: 440px;
+    color: white;
+    margin: 0.8em;
+    scroll-snap-align: start;
+    flex: 1 0 240px;
+    max-width: 260px;
+    overflow: hidden;
+    box-shadow: 5px 2px #2f2f2f;
+
+    &__image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        background-position: center;
+    }
+
+    &__body {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        height: 100%;
+    }
+
+    &__genres {
+        display: flex;
+    }
+
+    &__details {
+        text-decoration: none;
+        height: fit-content;
+        color: white;
+        margin-top: auto;
+        margin-left: auto;
+        background-color: #0d6efd;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    &__slogan {
+        font-size: 25px;
+        width: 88%;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        margin-top: 60px ;
+        font-weight: bold;
+    }
+}
+
+ li {
+   list-style: none;
+ }
+ .btn-warning {
+     margin-left: 10px !important ;
+ }
+
+ .text-shadow {
+    text-shadow: rgb(0, 0, 0, 0.5) 4px 1px;
+ }
+
+ .router-link-active {
+    a {
+        color: black !important;
+       background-color: white;
+     }
+ }
+
+.text-fit {
+    width: fit-content !important;
+}
+.w-90 {
+    width: 90% !important;
+    word-wrap: break-word;
+}
+
+.h-20px {
+    max-width: 288px;
+}
+
+.card-y {
+    scroll-snap-align: start;
+    margin-bottom: 5px;
+    display: flex;
+    max-width: 300px;
+    flex-direction: column;
+    a {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+
+.carousel {
+    display: flex;
+    height: fit-content;
+    min-height: 337px;
+}
+
+.carousel-y {
+    height: fit-content;
+    width: 100%;
+}
+
+.sizing {
+    min-width: auto;
+    min-height: 162px;
+    width: 100%;
+    max-width: auto;
+    max-height: 162px;
+}
+
+.content-wrapper {
+    .dropdown {
+        .dropdown-toggle {
+            font-size: 25px;
+            width: fit-content;
+        }
+        ul {
+            position: absolute;
+            padding: 10px;
+            z-index: 1000;
+            li {
+                a {
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.content-wrapper {
+     .dropdown {
+        ul {
+            background-color: #151515;
+        }
+    }
+}
+
+@media  only screen and (min-width: 768px) {
+    .content-wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .dropdown {
+            width: 15% !important;
+            ul {
+                margin-top: 50px;
+                margin-left: 0px;
+            }
+        }
+    }
+    .carousel {
+        width: 85% !important;
+    }
+    .card-y {
+        max-width: 250px !important;
+    }
+}
+
+@media  only screen and (max-width: 768px) {
+
+    .carousel {
+        width: 75% !important;
+    }
+    .card-y {
+        min-width: 300px !important;
+    }
+
+    .sizing {
+        min-width: 300px !important;
+        min-height: 162px;
+        width: 100%;
+        max-width: 30px;
+        max-height: 162px;
+    }
+}
+
+@media  only screen and (min-width: 427px) {
+    .carousel-y {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card-y {
+        margin: 9px;
+    }
+    .carousel {
+        flex-wrap: wrap;
+        width: 80%;
+        justify-content: center;
+    }
+}
+
+@media  only screen and (max-width: 426px) {
+    .carousel {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        width: 90% !important;
+        margin: 0 auto;
+    }
+    .card-y {
+        max-width: 100%;
+    }
+    ::-webkit-scrollbar{
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-y {
+        max-height: 300px;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 auto;
+    }
+    .sizing {
+        min-width: 100% !important;
+        min-height: 170px;
+        max-width: 100% !important;
+        max-height: 170px;
+    }
+
+
+    .content-wrapper {
+        .dropdown {
+            width: 90% !important;
+            display: block !important;
+           ul {
+               margin-top: 10px;
+               background-color: #151515;
+           } 
+        }
+    }
+}
+
+@media  only screen and (max-width: 320px) {
+
+    .swipeCard{
+        min-width: 15em !important;
+    }
+    .sizing{
+        min-width: 100%;
+        min-height: 163px;
+        max-width: 100%;
+        max-height: 163px;
+    }
+}

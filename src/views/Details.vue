@@ -65,7 +65,6 @@
           </div>
         </div>
       </div>
-      <p v-else> No suggested</p>
     </div>
   </div>
 </template>
@@ -82,7 +81,6 @@ export default defineComponent({
     function getId (id) {
       details.value = getDetails(id)
       suggested = getDetails(id)
-      console.log(details.value)
     }
     watchEffect(() => {
       getId(route.params.id)
@@ -118,8 +116,9 @@ a {
   width: 30%;
   height: 220px;
 }
-.details-w {
-  width: 90%;
+
+.text-shadow {
+  text-shadow: rgb(0, 0, 0, 0.5) 4px 1px;
 }
 @media only screen and (max-width: 595px) {
   .size {
