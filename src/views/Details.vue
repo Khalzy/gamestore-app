@@ -65,6 +65,7 @@
           </div>
         </div>
       </div>
+      <p v-else> No suggested</p>
     </div>
   </div>
 </template>
@@ -81,6 +82,7 @@ export default defineComponent({
     function getId (id) {
       details.value = getDetails(id)
       suggested = getDetails(id)
+      console.log(details.value)
     }
     watchEffect(() => {
       getId(route.params.id)
@@ -93,3 +95,54 @@ export default defineComponent({
   }
 })
 </script>
+<style scoped>
+a {
+  cursor: pointer;
+}
+.preview video {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+}
+.link-style {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+.size {
+  width: 30%;
+  height: 220px;
+}
+.details-w {
+  width: 90%;
+}
+@media only screen and (max-width: 595px) {
+  .size {
+    width: auto;
+    height: 250px;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .size {
+    width: 45%;
+    height: 220px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .size {
+    width: 26%;
+    height: 200px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .size {
+    width: 26%;
+    height: 220px;
+  }
+}
+</style>

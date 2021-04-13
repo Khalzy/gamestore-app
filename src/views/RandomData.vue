@@ -27,3 +27,22 @@ export default defineComponent({
   }
 })
 </script>
+<style>
+.contain {
+  width: 20rem;
+  height: 20rem;
+}
+
+@media screen and (min-width: 300px) {
+  .contain {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+@media screen and (min-width: 700px) {
+  .contain {
+    width: 30rem;
+    height: 30rem;
+  }
+}
+</style>
